@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import { handleLink } from './commands/linkHandler';
-import { config } from './config';
+import config from './config';
 
 const client = new Client({
     intents: [

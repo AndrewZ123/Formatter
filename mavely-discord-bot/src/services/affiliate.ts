@@ -14,7 +14,7 @@ export const generateAffiliateLink = async (url: string): Promise<string | null>
         }
 
         const response = await axios.post<AffiliateResponse>(
-            `${config.MAVELY_API_URL}/link`,
+            config.MAVELY_API_URL,
             {
                 url: url,
             },
