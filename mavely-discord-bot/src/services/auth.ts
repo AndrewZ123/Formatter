@@ -1,6 +1,8 @@
 import axios from 'axios';
 import config from '../config';
 
+const TOKEN_EXPIRY_HOURS = 1; // Token expires after 1 hour
+
 let authToken: string | null = null;
 let tokenExpiry: Date | null = null;
 
@@ -27,8 +29,8 @@ export const loginToMavely = async (): Promise<string | null> => {
 
         if (response.data && response.data.token) {
             authToken = response.data.token;
-            // Set token expiry to 1 hour from now (adjust based on API specification)
-            tokenExpiry = new Date(Date.now() + 60 * 60 * 1000);
+            // Set token expiry based on TOKEN_EXPIRY_HOURS constant
+            tokenExpiry = new Date(Date.now() + TOKEN_EXPIRY_HOURS * 60 * 60 * 1000);
             console.log('Successfully logged into Mavely account');
             return authToken;
         } else {
