@@ -1,19 +1,30 @@
 import axios from 'axios';
 import { AffiliateResponse } from '../types';
-
-const MAVELY_API_URL = 'https://api.mavely.com/affiliate/link'; // Replace with the actual Mavely API endpoint
-const MAVELY_API_KEY = process.env.MAVELY_API_KEY; // Ensure this is set in your environment variables
+import { getAuthToken } from './auth';
+import config from '../config';
 
 export const generateAffiliateLink = async (url: string): Promise<string | null> => {
     try {
-        const response = await axios.post<AffiliateResponse>(MAVELY_API_URL, {
-            url: url,
-        }, {
-            headers: {
-                'Authorization': `Bearer ${MAVELY_API_KEY}`,
-                'Content-Type': 'application/json',
+        // Get authenticated token
+        const authToken = await getAuthToken();
+        
+        if (!authToken) {
+            console.error('Failed to authenticate with Mavely');
+            return null;
+        }
+
+        const response = await axios.post<AffiliateResponse>(
+            `${config.MAVELY_API_URL}/link`,
+            {
+                url: url,
             },
-        });
+            {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
 
         if (response.data && response.data.affiliateLink) {
             return response.data.affiliateLink;
@@ -22,7 +33,11 @@ export const generateAffiliateLink = async (url: string): Promise<string | null>
             return null;
         }
     } catch (error) {
-        console.error('Error generating affiliate link:', error);
+        if (axios.isAxiosError(error)) {
+            console.error('Error generating affiliate link:', error.response?.data || error.message);
+        } else {
+            console.error('Error generating affiliate link:', error);
+        }
         return null;
     }
 };

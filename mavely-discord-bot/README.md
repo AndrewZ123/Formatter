@@ -14,7 +14,7 @@ This project is a Discord bot that converts any link sent to it into a Mavely af
 - Node.js (version 14 or higher)
 - TypeScript
 - A Discord account and a Discord bot token.
-- Mavely API credentials.
+- A Mavely account with email and password credentials.
 
 ## Setup
 
@@ -31,7 +31,13 @@ This project is a Discord bot that converts any link sent to it into a Mavely af
    npm install
    ```
 
-3. Create a `.env` file in the root directory based on the `.env.example` file and fill in your Discord bot token and Mavely API credentials.
+3. Create a `.env` file in the root directory based on the `.env.example` file and fill in your Discord bot token and Mavely account credentials (email and password).
+
+   Required environment variables:
+   - `DISCORD_BOT_TOKEN`: Your Discord bot token
+   - `MAVELY_EMAIL`: Your Mavely account email
+   - `MAVELY_PASSWORD`: Your Mavely account password
+   - `MAVELY_API_URL`: Mavely API base URL (optional, defaults to https://api.mavely.com/affiliate/generate)
 
 4. Run the bot:
 
