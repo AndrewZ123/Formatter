@@ -1,0 +1,30 @@
+{
+  "name": "mavely-discord-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot that converts links into Mavely affiliate links.",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "dotenv": "^10.0.0",
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.0",
+    "ts-node": "^10.0.0",
+    "jest": "^27.0.0",
+    "@types/jest": "^27.0.0",
+    "@types/node": "^16.0.0"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "affiliate",
+    "mavely"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
