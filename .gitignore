@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.log
+.mavely-profile/
+.env
+.debug/
+debug-artifacts/
